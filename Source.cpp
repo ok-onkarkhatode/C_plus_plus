@@ -1,111 +1,196 @@
+
+//#include<iostream>
+//#include<conio.h>
+
 /*
-#include<iostream>
-#include<conio.h>
+class Demo
+{
+public:
+	const int a;
+	 mutable int b;
+   
+public:
+    Demo():a(10)
+	{
+	   b=20;
+	}
+
+	void display()
+	{
+	std::cout<< a <<std::endl;
+	std::cout<< b <<std::endl;
+
+	}
+
+	void fun() const
+	{
+	a++;
+	b++;
+	}
+};
+
 
 int main()
-{  
-	int n,i;
-	int a[4]={1,2,3,4};
-//	int a=20,b=30,c=40;
- // std::cout<<"hello world";
- std::cout<<"please enter value";
-// std::cin>>n;
+{
+	Demo d;
+	d.display();
+	d.fun();
 
- for(i=0;i<4;i++)
+	//const int a=10;
+	//int *p= &a;
+	//int *p = const_cast<int*>(&a);
+	(*p)++;
+	_getch();
+	//return 0;
+};
+*/
+/*
+class Demo
+{
+public:
+ void fun() const
  {
-   std::cout<<std::hex<<100;
- }
-
- _getch();
- return 0;
  
+ 
+ }
+public:
+ void gun()
+ {
+ 
+ }
+};
+
+
+int main()
+{
+
+  // const Demo d;//const objech const function
+  // d.fun();
+  // d.gun();//const ni fakt non const la call karu shakt nahi
+ 
+	//Demo d1;
+	//d1.fun();
+	//d1.gun();
+	_getch();
+	return 0;
 }
 */
 
 /*
-#include<iostream>
-#include<conio.h>
- class Demo
+class Demo
 {
-  public :
-  int a;
-  static int b;
-   Demo()
-   {
+public:
+	int a;
+	int b;
+	int *p;
    
-   }
+	Demo()//default constructor
+	{
+	//std::cout<<this default constaructor;
+	}
+	
 
+	Demo(int a,int b,int c)//param
+	{
+	 this->a = a;
+	 this->b = b;
+	 (this->p)=(int*)malloc(sizeof(int));
+	 *(this->p)=c;
+
+	 //std::cout<<a<<b<<*(this->p)<<std::endl;
+	}
+
+	Demo(const Demo& other)//deep copy
+	{
+	 this->a=other.a;
+	 this->b=other.b;
+	 (this->p)=(int*)malloc(sizeof(int));
+	 *(this->p)=*(other.p);
+	}
+
+	void operator=(const Demo& other)
+	{
+	   this->a=other.a;
+	   this->b=other.b;
+	   (this->p)=(int*)malloc(sizeof(int));
+	  *(this->p)=*(other.p);
+	
+	}
 };
-int Demo::b=20;
 
 int main()
 {
-	Demo d1;
-	d1.a=10;
-	d1.a++;
-	d1.b++;
-	std::cout<<d1.a<<std::endl<<d1.b;
+    //explicit copy constructor
+	//Demo d1;
+	Demo d1(10,20,30);
+	//(d1.a)++;
+	//(d1.b)++;
+	//(*(d1.p))++;
+	//std::cout<<d1.a<<d1.b<<*(d1.p)<<std::endl;
 
-	Demo d2;
-	d2.a++;
-	d2.b++;
-	std::cout<<d2.a<<std::endl<<d2.b;
+	/*Demo d2(d1);//synthesis copy const shadow copy
+    std::cout<<d1.a<<d1.b<<*(d1.p)<<std::endl;
+	std::cout<<d2.a<<d2.b<<*(d2.p)<<std::endl;*/
+	
 
+	//Demo d2=d1;
+	//std::cout<<d1.a<<d1.b<<*(d1.p)<<std::endl;
+	//std::cout<<d2.a<<d2.b<<*(d2.p)<<std::endl;
+
+   /*
 	Demo d3;
-	d3.a++;
-	d3.b++;
-	std::cout<<d3.a<<std::endl<<d3.b;
+	d3=d1; //deep copy
+	//(d1.a)++;
+	//(d1.b)++;k
+	(*(d1.p))++;
+	std::cout<<"deep copy"<<std::endl;
+	std::cout<<d1.a<<d1.b<<*(d1.p)<<std::endl;
+    std::cout<<d3.a<<d3.b<<*(d3.p)<<std::endl;
+
+
+
 
 	_getch();
- return 0;
+	return 0;
 
- */
+}
 
-
+*/
 
 #include<iostream>
 #include<conio.h>
- class Parent
+
+class Demo
 {
-private:
-	 int a;
-protected:
-	 int b;
-  public :
-       int c;
+  int a;
+  int b;
+  int c;
 
 
- };
-
- class Child:Parent
- {
-   int x;
-   int y;
-
- public:
-	 void fun()
-	 {
-        std::cout<<c<<b;
-	 }
- };
-
- class Dindi
- {
-   int s1;
-   int s2;
-
-   Parent p;
-   void 
-   {
+  Demo(int a,int b,int c)
+  {
+   this->a=a;
+   this->b=b;
+   this->c=c;
    
-   }
- };
+  }
 
- int main()
- {
-  Child c;
-  c.fun();
+  Demo* opertar +(const Demo& other)
+  {
+	 Demo* d=(Demo*)malloc(sizeof(Demo));
+    d->a=this->a + other.a;
+    d->b=this->b + other.b;
+    d->c=this->c + other.c;
+	return d;
+  }
 
-  _getch();
-  return 0;
- }
+};
+
+int main()
+{
+  Demo d1(10,20,30);
+  Demo d2(40,50,60);
+  Demo d3= d2+d1;
+
+
+}
