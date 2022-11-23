@@ -1,110 +1,50 @@
 
+
 #include<iostream>
 #include<conio.h>
 
- class Employee
- {
- private:
-   int empid;
-    int age;
-    int salary;
+class Demo
+{
+public:
+	int a;
+	int b;
+	int c;
 
-  public:
-
-	Employee()
+	Demo(int a,int b,int c)
 	{
-	   std::cout<<"Default employee consructor"<<std::endl;
-
+	   this->a=a;
+	   this->b=b;
+	   this->c=c;
 	}
 
-	Employee(int empid, int age, int salary)
+	Demo& operator++()
 	{
-	   this->empid=empid;
-	   this->age=age;
-	   this->salary=salary;
-
-	
+	 (this->a)++;  
+	 (this->b)++;  
+	 (this->c)++;  
+	  return *this;
 	}
-    
 
-   void setEmpid(int empid)
-  {
-   this->empid = empid;
-  }
 
-  void setAge(int age)
-  {
-   this->age = age;
-  }
+	Demo& operator++(int )
+	{
+	 (this->a)++;  
+	 (this->b)++;  
+	 (this->c)++;  
+	  return *this;
+	}
 
-  void setSalary(int salary)
-  {
-   this->salary = salary;
-  }
-
-  int getEmpid()
- {
-  return this->empid;
- }
-
-  int getAge()
-   {
-    return this->age;
-   }
-
-   int getSalary()
-   {
-    return this->salary;
-   }
-
-   void display()
-   {
-      std::cout << "The id of the employee is\n" << this->empid << std::endl;
-      std::cout << "Age of the employeee is\n" << this->age << std::endl;
-      std::cout << "Salary of the employee is\n" << this->salary << std::endl;
-   
-   }
- };
-
- class Manager:public Employee
- {
- private:
-	 int bouns;
-
-	 Manager()
-	 {
-	   std::cout<<"Default manager consructor"<<std::endl;
-	 }
- public:
-
-	 Manager(int empid, int age, int salary,int bouns)
-		 :Employee(empid,age,salary)
-	 {
-	  this->bouns=bouns;
-	 }
-    
-	 void setBouns(int bouns)
-     {
-      this->bouns = bouns;
-     }
-
-	 
-   int getBouns()
-   {
-    return this->bouns;
-   }
-
-     void display()
-   {
-	   Employee::display();
-      std::cout << "The bounsof the employee is\n" << this->bouns << std::endl;
- 
- };
+};
 
 int main()
 {
-  Manager ok(11,21,30000, 5000);
+ Demo d1(10,20,30);
+ Demo d2=++d1;
+  std::cout<<d2.a<<d2.b<<d2.c;
 
-_getch();
-return 0;
+  Demo d3=d1++;
+
+ std::cout<<d1.a<<d1.b<<d1.c;
+ _getch();
+  return 0;
 }
