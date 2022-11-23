@@ -2,60 +2,51 @@
 
 class Demo
 {
-private:
+public:
+  /*
+  Demo fun()
+  {
+    std::cout<<"fun  ";
+    return (*this);
+  }
 
-  int a;
-  int b;
-  int c;
+  Demo gun()
+  {
+    std::cout<<"gun  ";
+    return (*this);
+  }
 
-  public:
-    Demo()
-    {
-      a = 10;
-      b = 20;
-      c = 30;
+  Demo run()
+  {
+    std::cout<<"run  ";
+    return (*this);
+  }
+  */
 
-      return ;
-    }
+  Demo* fun()
+  {
+    std::cout<<"fun  ";
+    return this;
+  }
 
-    /*
-    // first way to change value
-    int* ret_address()
-    {
-      return (&a);
-    }
-    */
+  Demo* gun()
+  {
+    std::cout<<"gun  ";
+    return this;
+  }
 
-    void display()
-    {
-      std::cout<< a <<" " << b  <<" " << c << std::endl;
-    }
-
-
+  Demo* run()
+  {
+    std::cout<<"run  ";
+    return this;
+  }
 };
 
 int main()
 {
+
   Demo d;
-  d.display();
-
-  /*
-  // first way to change value
-     int* p = d.ret_address();
-     (*p)++;
-  */
-  
-  // second way using casting
-  int* p = reinterpret_cast<int*>(&d);
-
-  (*(p+0))++;
-  (*(p+1))++;
-  (*(p+2))++;
-
-  d.display();
+  //d.fun().gun().run();  //using direct accesing operator
+    d.fun()->gun()->run();
   return 0;
-
-
-
-
 }
