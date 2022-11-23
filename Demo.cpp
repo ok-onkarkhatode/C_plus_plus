@@ -1,54 +1,61 @@
 #include<iostream>
 
-class Parent
+class Demo
 {
-  private:
-    int a;
-  protected:
-    int b;
-  public:
-    int c;
+private:
 
-};
-
-class Child : Parent
-{
-  int x;
-  int y;
+  int a;
+  int b;
+  int c;
 
   public:
-  void fun()
-  {
-    std::cout<<b<<c<< std::endl;
-  }
-};
-
-class Dindi
-{
-    int s1;
-    int s2;
-    Parent p;
-
-  public:
-    void fun()
+    Demo()
     {
-      std::cout<<p.c <<std::endl;
+      a = 10;
+      b = 20;
+      c = 30;
+
+      return ;
     }
+
+    /*
+    // first way to change value
+    int* ret_address()
+    {
+      return (&a);
+    }
+    */
+
+    void display()
+    {
+      std::cout<< a <<" " << b  <<" " << c << std::endl;
+    }
+
+
 };
 
 int main()
 {
+  Demo d;
+  d.display();
 
-  Child pradip;
-//  pradip.fun();
+  /*
+  // first way to change value
+     int* p = d.ret_address();
+     (*p)++;
+  */
+  
+  // second way using casting
+  int* p = reinterpret_cast<int*>(&d);
 
-//  std::cout<<sizeof(pradip) <<std::endl;
+  (*(p+0))++;
+  (*(p+1))++;
+  (*(p+2))++;
 
-
- Dindi sairam;
- sairam.fun();
-std::cout<<sizeof(sairam) <<std::endl;
-std::cout<<sizeof(sairam) <<std::endl;
-
+  d.display();
   return 0;
+
+
+
+
 }
