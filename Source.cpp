@@ -1,50 +1,57 @@
-
-
 #include<iostream>
 #include<conio.h>
 
-class Demo
+class Employee
 {
 public:
-	int a;
-	int b;
-	int c;
+  int eid;
 
-	Demo(int a,int b,int c)
+//protected:
+public:
+  double esalary;
+
+  void salary()
+  {
+  std::cout<<"salary of Employee";
+  }
+
+  Employee()
+  {
+  
+  }
+
+  Employee(int eid,double esalary)
+  {
+    this->eid=eid;
+    this->esalary=esalary;
+
+  }
+
+};
+
+
+class Manager:public Employee
+{
+public:
+	int bouns;
+
+	Manager(int eid,double esalary,int bouns)
 	{
-	   this->a=a;
-	   this->b=b;
-	   this->c=c;
-	}
+	 this->bouns=bouns;
 
-	Demo& operator++()
-	{
-	 (this->a)++;  
-	 (this->b)++;  
-	 (this->c)++;  
-	  return *this;
-	}
-
-
-	Demo& operator++(int )
-	{
-	 (this->a)++;  
-	 (this->b)++;  
-	 (this->c)++;  
-	  return *this;
 	}
 
 };
 
 int main()
 {
- Demo d1(10,20,30);
- Demo d2=++d1;
-  std::cout<<d2.a<<d2.b<<d2.c;
 
-  Demo d3=d1++;
+ Manager Onkar(10,10000,500);
+ Onkar.bouns;
+ Onkar.salary();
 
- std::cout<<d1.a<<d1.b<<d1.c;
+ std::cout<<
+
  _getch();
-  return 0;
+ return 0;
 }
