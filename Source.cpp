@@ -1,57 +1,92 @@
 #include<iostream>
 #include<conio.h>
 
-class Employee
+class A
 {
 public:
-  int eid;
-
-//protected:
-public:
-  double esalary;
-
-  void salary()
+  int a;
+  A()
   {
-  std::cout<<"salary of Employee";
+    this -> a = 10;
   }
-
-  Employee()
-  {
-  
-  }
-
-  Employee(int eid,double esalary)
-  {
-    this->eid=eid;
-    this->esalary=esalary;
-
-  }
-
 };
 
-
-class Manager:public Employee
+class B
 {
 public:
-	int bouns;
+  int b;
+  B()
+  {
+    this -> b = 20;
+  }
+};
 
-	Manager(int eid,double esalary,int bouns)
-	{
-	 this->bouns=bouns;
+class C
+{
+public:
+  int c;
+  C()
+  {
+    this -> c = 30;
+  }
+};
 
-	}
+class D : public A, public B, public C
+{
+public:
+  int d;
+  D()
+  {
 
+    this -> d = 40;
+  }
 };
 
 int main()
 {
+  /*
+  //copy one object into another object
+  A a;
+  std::cout<<a.a <<std::endl;
+  D d;
+  a = d;
+  std::cout<<a.a <<std::endl;
+   */
 
- Manager Onkar(10,10000,500);
- Onkar.bouns;
- Onkar.salary();
+/*
+object sliceing using reference variable
+  D dobj;
+  A& pa = dobj;
+  pa.a;
+  pa.b;
+  pa.c; //b ani c data member access krnar nahi
+*/
 
- std::cout<<
+// object slicing using pointer
+  /*
+  D dobj;
+  A* pa = &dobj;
+  B* pb = &dobj;
+  C* pc = &dobj;
+  D* pd = &dobj;
 
- _getch();
- return 0;
+  std::cout<<"object "<<&dobj <<std::endl;
+  std::cout<<"pa pointer "<<pa <<std::endl;
+  std::cout<<"pb pointer "<<pb <<std::endl;
+  std::cout<<"pc pointer "<<pc <<std::endl;
+
+  std::cout<<"value of a :"<<pa->a <<std::endl;
+  std::cout<<"value of a :"<<pb->b <<std::endl;
+  std::cout<<"value of a :"<<pc->c <<std::endl;
+
+    std::cout<<"value of a b c : "<<pd->a <<" "<<pd->b <<" "<<pd->c <<std::endl;
+	*/
+	//down casting
+
+	A pc;
+	D* dptr = static_cast<D*>(&pc);
+	std::cout<< dptr ->a<<std::endl;
+	
+	_getch();
+  return 0;
 }
