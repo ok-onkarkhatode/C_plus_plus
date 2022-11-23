@@ -1,92 +1,133 @@
+/*
+#include<iostream>
+#include<conio.h>
+class Demo
+{
+  public:
+   int a;
+   int b;
+   Demo(int a,int b)
+     {
+       this->a=a;
+       this->b=b;
+     }
+  Demo* operator +(const Demo& other)
+     {
+
+       Demo* temp=(Demo*)malloc(sizeof(Demo));
+       temp->a=this->a + other.a;
+       temp->b=this->b + other.b;
+
+
+    return temp;
+    }
+  Demo* operator - (const Demo& other)
+     {
+
+       Demo* temp=(Demo*)malloc(sizeof(Demo));
+       temp->a=this->a - other.a;
+       temp->b=this->b - other.b;
+
+
+    return temp;
+    }
+  Demo* operator * (const Demo& other)
+     {
+
+       Demo* temp=(Demo*)malloc(sizeof(Demo));
+       temp->a=this->a * other.a;
+       temp->b=this->b * other.b;
+
+
+    return temp;
+    }
+
+  Demo* operator / (const Demo& other)
+     {
+
+       Demo* temp=(Demo*)malloc(sizeof(Demo));
+       temp->a=this->a / other.a;
+       temp->b=this->b / other.b;
+
+
+    return temp;
+    }
+  Demo* operator % (const Demo& other)
+     {
+
+       Demo* temp=(Demo*)malloc(sizeof(Demo));
+       temp->a=this->a % other.a;
+       temp->b=this->b % other.b;
+
+
+    return temp;
+    }
+};
+int main()
+{
+ Demo d1(10,20);
+ Demo d2(20,30);
+// Demo *p=d1+d2; //addition opertor overloading
+ // Demo *p=d1-d2;
+  Demo *p=d1*d2;
+ // Demo *p=d1/d2;
+ // Demo *p=d1%d2;
+
+ Demo d3=*p;
+ std::cout<<d3.a<<std::endl;
+ std::cout<<d3.b<<std::endl;
+ 
+ _getch();
+return 0;
+}*/
+
+
 #include<iostream>
 #include<conio.h>
 
-class A
+class Demo
 {
-public:
+  public:
   int a;
-  A()
-  {
-    this -> a = 10;
-  }
-};
-
-class B
-{
-public:
   int b;
-  B()
+  
+
+   Demo(int a,int b)
+   {
+      this->a=a;
+	  this->b=b;
+   }
+  friend std::ostream& operator <<( std::ostream & os,const Demo & other);
+  friend std::istream& operator >>( std::istream & is,Demo & other);
+  Demo()
   {
-    this -> b = 20;
   }
+
 };
 
-class C
+std::ostream& operator <<( std::ostream & os,const Demo & other)
 {
-public:
-  int c;
-  C()
-  {
-    this -> c = 30;
-  }
-};
+  os<<other.a<<std::endl;
+  os<<other.b<<std::endl;
+   return os;
+}
 
-class D : public A, public B, public C
+std::istream& operator>>( std::istream& is,Demo& other)
 {
-public:
-  int d;
-  D()
-  {
-
-    this -> d = 40;
-  }
-};
+  is>>other.a;
+  is>>other.b;
+   return is;
+}
 
 int main()
 {
-  /*
-  //copy one object into another object
-  A a;
-  std::cout<<a.a <<std::endl;
-  D d;
-  a = d;
-  std::cout<<a.a <<std::endl;
-   */
+ Demo d1(10,20);
+ Demo d2(10,20);
+ std::cout<<d1<<d2;
+ Demo d3(40,50);
+ std::cin>>d3;
+  std::cout<<d3<<std::endl;
 
-/*
-object sliceing using reference variable
-  D dobj;
-  A& pa = dobj;
-  pa.a;
-  pa.b;
-  pa.c; //b ani c data member access krnar nahi
-*/
-
-// object slicing using pointer
-  /*
-  D dobj;
-  A* pa = &dobj;
-  B* pb = &dobj;
-  C* pc = &dobj;
-  D* pd = &dobj;
-
-  std::cout<<"object "<<&dobj <<std::endl;
-  std::cout<<"pa pointer "<<pa <<std::endl;
-  std::cout<<"pb pointer "<<pb <<std::endl;
-  std::cout<<"pc pointer "<<pc <<std::endl;
-
-  std::cout<<"value of a :"<<pa->a <<std::endl;
-  std::cout<<"value of a :"<<pb->b <<std::endl;
-  std::cout<<"value of a :"<<pc->c <<std::endl;
-
-    std::cout<<"value of a b c : "<<pd->a <<" "<<pd->b <<" "<<pd->c <<std::endl;
-	*/
-	//down casting
-
-	A pc;
-	D* dptr = static_cast<D*>(&pc);
-	std::cout<< dptr ->a<<std::endl;
-	
-	_getch();
-  return 0;
+ _getch();
+return 0;
 }
